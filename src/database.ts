@@ -1,15 +1,15 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import { SQL } from "bun";
+import { drizzle } from "drizzle-orm/bun-sql";
 
 import * as schema from "./db/hot-updater-schema";
 
 export const createDatabase = (databaseUrl: string) => {
-  const client = postgres(databaseUrl, { max: 10 });
-  const db = drizzle(client, { schema });
+  const client = new SQL(databaseUrl, { max: 10 });
+  const db = drizzle({ client, schema });
 
   return {
     client,
     db,
-    close: () => client.end({ timeout: 5 }),
+    close: () => client.close({ timeout: 5 }),
   };
 };

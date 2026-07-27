@@ -1,4 +1,4 @@
-import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { migrate } from "drizzle-orm/bun-sql/migrator";
 
 import type { Environment } from "./config";
 import { createDatabase } from "./database";
