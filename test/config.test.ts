@@ -20,6 +20,19 @@ describe("loadConfig", () => {
     expect(loadConfig({ ...validEnvironment, PORT: "9090" }).port).toBe(9090);
   });
 
+  test("normalizes whitespace and treats a blank endpoint as unset", () => {
+    const config = loadConfig({
+      ...validEnvironment,
+      HOT_UPDATER_AUTH_TOKEN: "  secret-token  ",
+      PORT: "  ",
+      S3_ENDPOINT: "  ",
+    });
+
+    expect(config.authToken).toBe("secret-token");
+    expect(config.port).toBe(8080);
+    expect(config.s3).not.toHaveProperty("endpoint");
+  });
+
   test("reports every missing required variable", () => {
     expect(() => loadConfig({})).toThrow(
       "DATABASE_URL, HOT_UPDATER_AUTH_TOKEN, S3_REGION, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, S3_BUCKET_NAME",
@@ -30,5 +43,11 @@ describe("loadConfig", () => {
     expect(() => loadConfig({ ...validEnvironment, PORT: "0" })).toThrow(
       "PORT must be an integer between 1 and 65535",
     );
+  });
+
+  test("rejects a blank required variable", () => {
+    expect(() =>
+      loadConfig({ ...validEnvironment, S3_BUCKET_NAME: "  " }),
+    ).toThrow("S3_BUCKET_NAME must not be empty");
   });
 });

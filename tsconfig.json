@@ -15,5 +15,5 @@
     "target": "ES2022",
     "types": ["bun"]
   },
-  "include": ["drizzle.config.ts", "src/**/*.ts", "test/**/*.ts"]
+  "include": ["drizzle.config.ts", "env.d.ts", "src/**/*.ts", "test/**/*.ts"]
 }

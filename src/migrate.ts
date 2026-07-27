@@ -12,7 +12,7 @@ const getDatabaseUrl = (environment: Environment): string => {
 };
 
 export const runMigrations = async (
-  environment: Environment = process.env,
+  environment: Environment = Bun.env,
 ): Promise<void> => {
   const database = createDatabase(getDatabaseUrl(environment));
 
