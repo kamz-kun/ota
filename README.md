@@ -1,5 +1,7 @@
 # Hot Updater custom server
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/eoTRRQ?referralCode=slvssb&utm_medium=integration&utm_source=template&utm_campaign=generic)
+
 A self-hosted [Hot Updater](https://hot-updater.dev/docs/custom/overview)
 metadata server built with Bun, Hono, Drizzle, PostgreSQL, and S3-compatible
 storage. Update checks are public; bundle management requires a bearer token.
