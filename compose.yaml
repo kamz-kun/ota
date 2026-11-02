@@ -29,7 +29,7 @@ services:
       S3_REGION: ${S3_REGION:-auto}
       S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?Set S3_SECRET_ACCESS_KEY in .env}
     ports:
-      - "3036:80"
+      - "80:3036"
     restart: unless-stopped
 
 volumes:
