@@ -10,7 +10,7 @@ FROM oven/bun:1.3.14-slim AS release
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=3036
 
 COPY --from=install /app/node_modules ./node_modules
 COPY package.json ./
@@ -19,6 +19,6 @@ COPY src ./src
 
 USER bun
 
-EXPOSE 8080/tcp
+EXPOSE 3036
 
 CMD ["bun", "src/container.ts"]
